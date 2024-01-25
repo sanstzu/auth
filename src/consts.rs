@@ -5,7 +5,6 @@ pub static CONFIG: Lazy<Consts> = Lazy::new(Consts::load_consts);
 
 #[derive(Clone)]
 pub struct Consts {
-    pub auth_bcrypt_cost: u32,
     pub auth_bcrypt_salt: String,
     pub access_token_secret: String,
     pub refresh_token_secret: String,
@@ -15,10 +14,6 @@ pub struct Consts {
 impl Consts {
     fn load_consts() -> Self {
         Consts {
-            auth_bcrypt_cost: env::var("AUTH_BCRYPT_COST")
-                .expect("AUTH_BCRYPT_COST env not found")
-                .parse::<u32>()
-                .expect("Failed to parse AUTH_BCRYPT_COST"),
             auth_bcrypt_salt: env::var("AUTH_BCRYPT_SALT").expect("AUTH_BCRYPT_SALT env not found"),
             access_token_secret: env::var("ACCESS_TOKEN_SECRET")
                 .expect("ACCESS_TOKEN_SECRET env not found"),
@@ -26,10 +21,6 @@ impl Consts {
                 .expect("REFRESH_TOKEN_SECRET not found"),
             database_connection: env::var("DATABASE_URL").expect("DATABASE_URL env not found"),
         }
-    }
-
-    pub fn get_auth_bcrypt_cost(&self) -> u32 {
-        self.auth_bcrypt_cost
     }
 
     pub fn get_auth_bcrypt_salt(&self) -> &str {

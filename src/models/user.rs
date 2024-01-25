@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use sqlx::{Pool, Postgres};
 
 #[derive(sqlx::FromRow, Serialize, Deserialize, Clone)]
 
