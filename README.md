@@ -1,2 +1,2 @@
 # Auth
-Testing out simple Rust web-frameworks by creating an authentication service.
+Testing out simple Rust web-framework by creating an authentication service using Axum and Postgres.
