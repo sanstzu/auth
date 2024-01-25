@@ -20,7 +20,7 @@ pub struct JsonPayload {
 pub async fn handler(State(state): State<AppState>, Json(payload): Json<JsonPayload>) -> Response {
     let db = state.get_db();
 
-    let verify_res = functions::verify(payload.refresh_token);
+    let verify_res = functions::verify_refresh(payload.refresh_token);
 
     match verify_res {
         Err(functions::VerifyTokenError::InvalidToken) => {
